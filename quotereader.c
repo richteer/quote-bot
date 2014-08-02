@@ -16,9 +16,9 @@ static void convert_to_linebuffer( char * source, size_t source_sz)
 
 	for (; end < source_sz; end++) {
 		if ('\n' == source[end]) {
-			quotebuffer[i] = malloc(end - start + 2);
-			quotebuffer[end-start+1] = '\0';
+			quotebuffer[i] = calloc(1,end - start + 2);
 			strncpy(quotebuffer[i], source + start, end - start);
+printf("%s\n",quotebuffer[i]);
 			if (++i == quotebufferlen) {
 				realloc(quotebuffer, sizeof(char*) * (quotebufferlen *= 2));
 				assert(quotebuffer != NULL);
@@ -57,5 +57,5 @@ int init_quotes(void)
 
 char * get_random_quote(void)
 {
-	return quotebuffer[rand() % quotenum];
+	return quotebuffer[random() % quotenum];
 }
