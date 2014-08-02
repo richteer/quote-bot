@@ -28,7 +28,6 @@ static void convert_to_linebuffer( char * source, size_t source_sz)
 
 	}
 	quotenum = i;
-
 }
 
 int init_quotes(void)
@@ -42,7 +41,7 @@ int init_quotes(void)
 		return 1;
 	}
 	fseek(quotestxt, 0, SEEK_END);
-	ftell(quotestxt);
+	size = ftell(quotestxt);
 	rewind(quotestxt);
 
 	tempbuffer = malloc(size);
